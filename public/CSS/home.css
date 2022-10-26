@@ -1,0 +1,160 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.nav {
+    background-color: #fff159;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    padding: 1rem;
+}
+
+nav .contenido-nav-1 a{
+    text-decoration: none;
+    color: #000;
+}
+
+nav .contenido-nav-2 {
+    grid-column: 2 / 4; 
+}
+
+nav .contenido-nav-2 input {
+    width: 90%;
+    padding: 0.5rem;
+    border: none;
+}
+
+nav .contenido-nav-2 button {
+    padding: 0.5rem;
+    border: none;
+    background-color: #fff;
+}
+
+nav .contenido-nav-2 ul {
+    display: flex;
+}
+
+nav .contenido-nav-3 ul {
+    display: flex;
+    justify-content: end;
+}
+
+nav .link {
+    padding-top: 1.5rem;
+}
+
+nav .link-2 {
+    padding-top: 2rem;
+}
+
+nav .link ul li {
+    list-style: none;
+    padding-right: 2rem;
+}
+
+nav .link-2 ul li {
+    list-style: none;
+    padding-right: 2rem;
+}
+
+main {
+    background-color: #ebebeb;
+    padding: 2rem 1rem;
+}
+
+main .titulo {
+    display: flex;
+    padding-bottom: 1.5rem;
+    color: #9a9a9a;
+}
+
+main .titulo a {
+    text-decoration: none;
+    display: flex;
+    align-items: end;
+    margin: 10px 0 2px 16px;
+    color: #769cd6;
+    font-weight: bold;
+}
+
+main section {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-gap: 12px;
+}
+
+main section .tarjeta {
+    background-color: #fff;
+}
+
+main section .tarjeta img {
+    display: block;
+    margin: auto;
+    text-decoration: none;
+}
+
+main section .tarjeta a hr {
+    color: rgb(218, 216, 216);
+}
+
+main section .tarjeta a {
+    text-decoration: none;
+}
+
+main section .tarjeta .informacion {
+    padding: 1rem;
+}
+
+main section .tarjeta .informacion .precio {
+    color: #000;
+}
+
+main section .tarjeta .informacion .envio {
+    padding: 0.5rem 0;
+    color: #16ae5f;
+    font-weight: bold;
+}
+
+main section .tarjeta .informacion .info {
+    color: grey;
+}
+
+.seccion-informativa {
+    display: flex;
+    padding: 2rem;
+}
+
+.seccion-informativa div {
+    padding: 2rem;
+    text-align: center;
+}
+
+.seccion-informativa div h2, p, a {
+    padding: 0.5rem 0;
+}
+
+.seccion-informativa div a {
+    text-decoration: none;
+    color: #769cd6;
+} 
+
+footer {
+    padding: 1rem 0.5rem 2rem 0.5rem;
+}
+
+footer .nav-footer-navigation {
+    background-color: #fff;
+    display: flex;
+}
+
+footer .nav-footer-navigation a {
+    padding-right: 1rem;
+    text-decoration: none;
+    color: #000;
+}
+
+footer .nav-footer-navigation small {
+    color: #d1cece;
+}

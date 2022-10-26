@@ -1,0 +1,92 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.nav {
+    background-color: #fff159;
+    padding: 1rem;
+}
+
+nav .contenido-nav-1 a{
+    text-decoration: none;
+    color: #000;
+}
+
+main {
+    background-color: rgb(197, 195, 195);
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-gap: 20px;
+}
+
+
+main .seccion-1 {
+    grid-column: 1 / 4;
+}
+
+main .seccion-1 form {
+    border: 3px solid gray;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+main .seccion-1 form h1 {
+    padding: 2rem 0;
+}
+
+main .seccion-1 form input, select {
+    width: 80%;
+    padding: 1rem;
+    margin: 0.5rem 0;
+    border: none;
+    border-radius: 5px;
+}
+
+main .seccion-1 form button {
+    width: 80%;
+    padding: 1rem;
+    margin: 2rem 0;
+    border: none;
+    border-radius: 5px;
+    background-color: #3483fa;
+    color: #fff;
+    font-size: 1rem;
+}
+
+main .seccion-2 {
+    background-color: rgb(238, 235, 235);
+}
+
+main .seccion-2 .cont-img img {
+    display: block;
+    margin: auto;
+    padding-top: 1rem;
+}
+
+main .seccion-2 h2, p {
+    padding: 1rem;
+}
+
+
+footer {
+    padding: 1rem 0.5rem 2rem 0.5rem;
+}
+
+footer .nav-footer-navigation {
+    background-color: #fff;
+    display: flex;
+}
+
+footer .nav-footer-navigation a {
+    padding-right: 1rem;
+    text-decoration: none;
+    color: #000;
+}
+
+footer .nav-footer-navigation small {
+    color: #d1cece;
+}
