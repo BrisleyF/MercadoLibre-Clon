@@ -16,7 +16,23 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Routing
 app.get('/', (req, res) => {
-	res.send("Hola mundo");
+	res.render('home');
+});
+
+app.get('/productos', (req, res) => {
+	res.render('productos');
+});
+
+app.get('/detalleDelProducto', (req, res) => {
+	res.render('detalleDelProducto');
+});
+
+app.get('/checkout', (req, res) => {
+	res.render('checkout');
+});
+
+app.get('/orden', (req, res) => {
+	res.render('orden');
 });
 
 
