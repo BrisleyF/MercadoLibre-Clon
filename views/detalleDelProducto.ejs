@@ -56,8 +56,9 @@
 
     <main>
         <section class="seccion-1">
+            <% for(const product of products) { %>
             <div class="cont-img">
-                <img width="570" height="370" src="https://http2.mlstatic.com/D_NQ_NP_948546-MLV43254604405_082020-O.webp" alt="Imagen 1 de 4 de Bicicleta Fuji Rookie Rin 20 Niña Blanco Perla Infantiles ">
+                <img width="470" height="370" src="<%= product.img %>" alt="<%= product.name %>">
             </div>
             <hr>
             <div class="info-1">
@@ -66,19 +67,19 @@
                     <tbody>
                         <tr>
                             <th>Marca</th>
-                            <td>Fuji</td>
+                            <td><%= product.marca %></td>
                         </tr>
                         <tr>
                             <th>Modelo</th>
-                            <td>ROOKIE 20 GIRL</td>
+                            <td><%= product.modelo %></td>
                         </tr>
                         <tr>
                             <th>Tamaño</th>
-                            <td>20"</td>
+                            <td><%= product.tamaño %></td>
                         </tr>
                         <tr>
                             <th>Genero</th>
-                            <td>Mujer</td>
+                            <td><%= product.genero %></td>
                         </tr>
                     </tbody>
                 </table>
@@ -125,20 +126,19 @@
         </section>
         <section class="seccion-2">
             <div class="tarjeta">
-                <h1>Bicicleta Fuji Rookie Rin 20 Niña Blanco Perla Infantiles</h1>
-                <p class="precio">$ 270</p>
+                <h1><%= product.name %></h1>
+                <p class="precio">$ <%= product.price %></p>
                 <p>Envio gratis a todo el país</p>
                 <p>Disponible</p>
-                <select name="Cantidad" id="">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                </select>
-                <a href="/checkout">
-                    <button type="submit">Comprar ahora</button>
-                </a>
-                
+                <form action="">
+                    <label for="">Cantidad de productos:</label>
+                    <input type="text" placeholder="1 o 2">
+                    <a href="/checkout">
+                        <button type="button">Comprar ahora</button>
+                    </a>
+                </form>
             </div>
+            <% } %>
         </section>
     </main>
 

@@ -60,19 +60,21 @@
             <a href="/productos">Ver más</a>
         </div>
         <section>
+            <% for(const product of products) { %>
             <div class="tarjeta">
-                <a href="/detalleDelProducto">
+                <a href="/detalleDelProducto/<%= product._id %>">
                     <div>
-                        <img width="224" height="224" src="https://http2.mlstatic.com/D_Q_NP_948546-MLV43254604405_082020-AB.webp" alt="Bicicleta Fuji Rookie Rin 20 Niña Blanco Perla Infantiles ">
+                        <img width="224" height="224" src="<%= product.img %>" alt="<%= product.name %>">
                     </div>
                     <hr>
                     <div class="informacion">
-                        <h2 class="precio">$ 270</h2>
+                        <h2 class="precio">$ <%= product.price %></h2>
                         <p class="envio">Envio gratis</p>
-                        <p class="info">Bicicleta Fuji Rookie Rin 20 Niña Blanco Perla Infantiles </p>
+                        <p class="info"><%= product.name %></p>
                     </div>
                 </a>
             </div>
+            <% } %>
         </section>
     </main>
 
