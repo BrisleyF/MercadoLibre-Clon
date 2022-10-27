@@ -22,7 +22,6 @@ main {
     grid-gap: 20px;
 }
 
-
 main .seccion-1 {
     grid-column: 1 / 4;
 }
@@ -44,6 +43,10 @@ main .seccion-1 form input, select {
     margin: 0.5rem 0;
     border: none;
     border-radius: 5px;
+}
+
+main .seccion-1 form a {
+    width: 80%;
 }
 
 main .seccion-1 form button {
@@ -70,7 +73,6 @@ main .seccion-2 .cont-img img {
 main .seccion-2 h2, p {
     padding: 1rem;
 }
-
 
 footer {
     padding: 1rem 0.5rem 2rem 0.5rem;

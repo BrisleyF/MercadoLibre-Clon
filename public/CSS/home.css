@@ -67,7 +67,7 @@ main {
 main .titulo {
     display: flex;
     padding-bottom: 1.5rem;
-    color: #9a9a9a;
+    color: #5f5d5d;
 }
 
 main .titulo a {
