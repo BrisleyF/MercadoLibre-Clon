@@ -131,8 +131,7 @@ main .seccion-2 .tarjeta .precio {
     font-size: 3rem;
 }
 
-main .seccion-2 .tarjeta select {
-    padding: 0.5rem;
+main .seccion-2 .tarjeta input {
     margin: 1rem 0;
 }
 
