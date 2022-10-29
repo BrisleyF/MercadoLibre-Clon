@@ -130,11 +130,12 @@
                 <p class="precio">$ <%= product.price %></p>
                 <p>Envio gratis a todo el país</p>
                 <p>Disponible</p>
-                <form action="">
+                <form id="formulario" action="">
                     <label for="">Cantidad de productos:</label>
-                    <input type="text" placeholder="1 o 2">
-                    <a href="/checkout">
-                        <button type="button">Comprar ahora</button>
+                    <input id="grupo__cantidad" type="text" name="cantidad" placeholder="1 o 2">
+                    <p class="formulario__input-error">La cantidad solo puede contener numeros y el maximo son 4 dígitos.</p>
+                    <a id="carrito-link">
+                        <button id="comprar" type="submit">Comprar ahora</button>
                     </a>
                 </form>
             </div>
@@ -155,7 +156,9 @@
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://kit.fontawesome.com/dd5e87f640.js" crossorigin="anonymous"></script>
+    <script src="/cantidad.js"></script>
 </body>
 </html>
 
