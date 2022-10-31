@@ -45,12 +45,6 @@ formulario.addEventListener('submit', (e) => {
 
     
 	if(campos.cantidad){
-		
-
-        let cantidad = inputCantidad.value;
-
-        datosDelFormulario(cantidad);
-
         formulario.reset();
 
         document.getElementById('grupo__cantidad').classList.remove('colorGreen');
@@ -58,15 +52,3 @@ formulario.addEventListener('submit', (e) => {
 	} 
 });
 
-let datosDelFormulario = async (cantidad) => {
-    await axios({
-        method: 'post',
-        url: 'http://localhost:3000/carrito/agregar',
-        responseType: 'json', 
-        data: {
-            'cantidad': cantidad,
-        }
-    }).then(({data: {_id}}) => {
-        document.getElementById("carrito-link").href= "/carrito/agregar/" + _id;        
-    });
-};
