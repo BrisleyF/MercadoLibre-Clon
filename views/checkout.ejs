@@ -19,6 +19,7 @@
     </nav>
 
     <main>
+        <% for(const product of products) { %>
         <section class="seccion-1">
             <form action="">
                 <h1>¿Dónde quieres recibirlo?</h1>
@@ -35,7 +36,7 @@
                     <option value="PagoMovil">Pago móvil</option>
                 </select>
                 <div>
-                    <a href="/orden">
+                    <a href="/orden/<%= product._id %>">
                         <button type="button">Continuar</button>
                     </a>
                 </div>
@@ -44,21 +45,22 @@
         <section class="seccion-2">
             <div class="tarjeta">
                 <div class="cont-img">
-                    <img width="224" height="224" src="https://http2.mlstatic.com/D_Q_NP_948546-MLV43254604405_082020-AB.webp"
-                        alt="Bicicleta Fuji Rookie Rin 20 Niña Blanco Perla Infantiles ">
+                    <img width="224" height="224" src="<%= product.img %>"
+                        alt="<%= product.name %>">
                 </div>
-                <h2>Bicicleta Fuji Rookie Rin 20 Niña Blanco Perla Infantiles</h2>
+                <h2><%= product.name %></h2>
                 <hr>
                 <div>
                     <p>Cantidad: 1</p>
-                    <p>precio: $ 270</p>
+                    <p>precio: $ <%= product.price %></p>
                     <p>Envio: Gratis</p>
                 </div>
                 <hr>
                 <div>
-                    <p>Total: $ 270</p>
+                    <p>Total: $ <%= product.price %></p>
                 </div>
             </div>
+            <% } %>
         </section>
     </main>
 

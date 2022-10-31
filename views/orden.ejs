@@ -23,31 +23,31 @@
             <div>
                 <h4>NUMERO DE ORDEN: |</h4>
                 <small>
-                    <strong>010203</strong>
+                    <strong><%= ordenes._id %></strong>
                 </small>
             </div>
             <div>
                 <h4>DIRECCIÓN: |</h4>
                 <small>
-                    <strong>calle del fondo</strong>
+                    <strong><%= ordenes.direccion %></strong>
                 </small>
             </div>
             <div>
                 <h4>DATE: |</h4>
                 <small>
-                    <strong>26/10/22</strong>
+                    <strong><%= ordenes.date %></strong>
                 </small>
             </div>
             <div>
                 <h4>TOTAL: |</h4>
                 <small>
-                    <strong>$ 270</strong>
+                    <strong>$ <%= ordenes.total %></strong>
                 </small>
             </div>
             <div>
                 <h4>METODO DE PAGO: |</h4>
                 <small>
-                    <strong>Efectivo</strong>
+                    <strong><%= ordenes.metodoDePago %></strong>
                 </small>
             </div>
         </div>
