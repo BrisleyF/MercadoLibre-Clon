@@ -134,8 +134,8 @@
                     <label for="">Cantidad de productos:</label>
                     <input id="grupo__cantidad" type="text" name="cantidad" placeholder="1 o 2">
                     <p class="formulario__input-error">La cantidad solo puede contener numeros y el maximo son 4 dígitos.</p>
-                    <a id="carrito-link">
-                        <button id="comprar" type="submit">Comprar ahora</button>
+                    <a href="/carrito/agregar/<%= product._id %>">
+                        <button id="comprar" type="button">Comprar ahora</button>
                     </a>
                 </form>
             </div>
