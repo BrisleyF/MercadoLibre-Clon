@@ -59,6 +59,11 @@ nav .link-2 ul li {
     padding-right: 2rem;
 }
 
+nav .contenido-nav-3 .link a {
+    text-decoration: none;
+    color: #000;
+}
+
 main {
     background-color: #ebebeb;
     padding: 2rem 1rem;

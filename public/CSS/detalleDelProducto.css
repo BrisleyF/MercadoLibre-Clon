@@ -59,6 +59,11 @@ nav .link-2 ul li {
     padding-right: 2rem;
 }
 
+nav .contenido-nav-3 .link a {
+    text-decoration: none;
+    color: #000;
+}
+
 main {
     padding: 3rem;
     display: grid;
@@ -141,8 +146,6 @@ main .seccion-2 .tarjeta input:focus {
 	outline: none;
 	box-shadow: 3px 0px 30px rgba(163,163,163, 0.4);
 }
-
-
 
 main .seccion-2 .tarjeta a {
     text-decoration: none;
