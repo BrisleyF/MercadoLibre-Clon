@@ -1,0 +1,65 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.nav {
+    background-color: #fff159;
+    padding: 1rem;
+}
+
+nav .contenido-nav-1 a{
+    text-decoration: none;
+    color: #000;
+}
+
+main {
+    background-color: #f7f7f7;
+    padding: 3rem 0;
+}
+
+main div {
+    width: 55%;
+    margin: 0 auto;
+}
+
+main div form {
+    margin: 2rem 0;
+    padding: 2rem 2rem;
+    box-shadow: 0 1px 3px rgb(0 0 0 / 20%);
+    background-color: #fff;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+main div form label, input , p {
+    padding: 0.5rem;
+}
+
+main div form input {
+    border-radius: 5px;
+    border: 1px solid grey;
+}
+
+main div form input:focus {
+    border: 2px solid #0075FF;
+	outline: none;
+	box-shadow: 3px 0px 30px rgba(163,163,163, 0.4);
+}
+
+main div form p {
+    color: grey;
+    font-size: 12px;
+}
+
+main div form button {
+    width: 30%;
+    margin: 0 auto;
+    padding: 0.5rem;
+    background-color: #3483fa;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+}
