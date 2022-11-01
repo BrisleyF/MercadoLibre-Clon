@@ -26,6 +26,16 @@ app.get('/', async (req, res) => {
 	res.render('home', { products });
 });
 
+app.get('/registro', async (req, res) => {
+
+	res.render('registro', {})
+})
+
+app.get('/inicioDeSesion', async (req, res) => {
+
+	res.render('inicioDeSesion', {})
+})
+
 app.get('/productos', async (req, res) => {
 
 	let products =  await productos.find({});
