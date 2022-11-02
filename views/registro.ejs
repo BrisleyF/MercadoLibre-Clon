@@ -21,17 +21,17 @@
     <main>
         <div>
         <h2>Completa tus datos</h2>
-        <form action="">
+        <form action="/registrar" method="post">
             <label for="">Nombre</label>
-            <input type="text">
+            <input type="text" name="nombre">
             <p>Ingrésalo tal como figura en tu documento.</p>
-            <label for="">E-mail</label>
-            <input type="text">
+            <label for="">Email</label>
+            <input type="text" name="email">
             <p>Asegúrate de tener acceso a este e-mail.</p>
             <label for="">Clave</label>
-            <input type="text">
+            <input type="password" name="clave">
             <p>Usa entre 6 y 20 caracteres.</p>
-            <button type="submit">Continuar</button>
+            <button type="submit" value="registrar">Continuar</button>
         </form>
         </div>
     </main>
