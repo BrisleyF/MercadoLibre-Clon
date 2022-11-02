@@ -6,6 +6,7 @@ const axios = require('axios');
 const initDb = require('./libs/db-connection');
 const productos = require('./model/productos');
 const carrito = require('./model/carrito');
+const user = require('./model/user');
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -29,12 +30,53 @@ app.get('/', async (req, res) => {
 app.get('/registro', async (req, res) => {
 
 	res.render('registro', {})
-})
+});
 
 app.get('/inicioDeSesion', async (req, res) => {
 
 	res.render('inicioDeSesion', {})
-})
+});
+
+app.post('/registrar', async (req, res) => {
+	const {nombre, email, clave} = req.body;
+	console.log('req.body', req.body)
+
+	const usuario = new user({nombre, email, clave});
+
+	usuario.save(err => {
+		if (err) {
+			res.status(500).send('ERROR AL REGISTRAR EL USUARIO');
+		} else {
+			res.redirect('/inicioDeSesion');
+		}
+	})
+	
+});
+
+app.post('/autenticar', async (req, res) => {
+	const {email, clave} = req.body;
+
+	user.findOne({email}, (err, usuario) => {
+		if (err) {
+			res.status(500).send('ERROR AL AUTENTICAR EL USUARIO');
+		} else if (!usuario) {
+			res.status(500).send('EL USUARIO NO EXISTE');
+		} else {
+			user.findOne({clave}, (err, usuario) => {
+				if (err) {
+					res.status(500).send('ERROR AL AUTENTICAR');
+				} else if (!usuario) {
+					res.status(500).send('LA CLAVE NO COINCIDE');
+				} else {
+					res.redirect('/');
+				}
+			});
+			
+			
+		}
+	} )
+
+});
 
 app.get('/productos', async (req, res) => {
 
