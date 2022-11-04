@@ -1,5 +1,7 @@
 const express = require('express');
 const app = express(); 
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 const path = require('path');
 const bodyParser = require('body-parser');
 const axios = require('axios');
@@ -7,6 +9,8 @@ const initDb = require('./libs/db-connection');
 const productos = require('./model/productos');
 const carrito = require('./model/carrito');
 const user = require('./model/user');
+
+const MONGO_URL = 'mongodb://localhost:27017/mercadoLibre';
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -19,8 +23,20 @@ app.set('view engine', 'ejs');
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(session({
+	secret: 'esto es un secreto',
+	resave: true,
+	saveUninitialized: true,
+	store: new MongoStore({
+		mongoUrl: MONGO_URL,
+		autoReconnect: true
+	})
+}));
+
 // Routing
 app.get('/', async (req, res) => {
+	req.session.cuenta = req.session.cuenta ? req.session.cuenta + 1 : 1;
+	console.log(`Has visto esta pagina: ${req.session.cuenta}`)
 
 	let products =  await productos.find().limit( 4 );
     
