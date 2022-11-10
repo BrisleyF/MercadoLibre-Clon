@@ -1,0 +1,64 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.nav {
+    background-color: #fff159;
+    padding: 1rem;
+}
+
+nav .contenido-nav-1 a{
+    text-decoration: none;
+    color: #000;
+}
+
+.verde {
+    background-color: rgb(19, 168, 19);
+    height: 30vh;
+    text-align: center;
+    padding: 3rem 0;
+    color: #fff;
+}
+
+main {
+    background-color: rgb(197, 195, 195);
+    padding: 2rem;
+}
+
+
+main .seccion-1 .blanco {
+    background-color: #fff;
+    padding: 1rem 0;
+    width: 50%;
+    margin: 0.5rem auto;
+}
+
+main .seccion-1 p {
+    padding: 0.5rem 1rem;
+}
+
+main .seccion-1 .gris {
+    color: grey;
+}
+
+main .seccion-1 a {
+    text-decoration: none;
+    color: #3483fa;
+    padding: 1rem;
+}
+
+main .seccion-1 .btn {
+    text-align: center;
+}
+
+main .seccion-1 .btn a button {
+    padding: 0.5rem;
+    margin: 2rem 0;
+    border: none;
+    border-radius: 5px;
+    background-color: #3483fa;
+    color: #fff;
+    font-size: 1rem;
+}

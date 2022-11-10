@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success| MercadoLibre</title>
+    <link rel="stylesheet" href="/CSS/success.css">
+</head>
+<body>
+    <nav class="nav">
+        <div class="contenido-nav-1">
+            <a class="nav-logo" href="/">
+                <img src="/Imagenes/mercado-libre-logo.png" alt="logo de mercadolibre" width="134" height="34">
+            </a>
+        </div>
+    </nav>
+
+    <div class="verde">
+        <p>¡Excelente compra!</p>
+        <h3>Llega el lunes 19 de agosto</h3>
+    </div>
+    <main>
+        <% for(const product of products) { %>
+        <section class="seccion-1">
+            <div class="blanco">
+                <p>Envio a domicilio</p>
+                <p class="gris">Te avisamos cuando tu compra este en caminino</p>
+            </div>
+            <div class="blanco">
+                <p>Vendedor</p>
+                <p class="gris">Mercado pago point</p>
+                <hr>
+                <a href="">Enviar mensaje</a>
+            </div>
+            <div class="btn">
+                <a href="/orden/<%= product._id %>">
+                    <button type="button">Ver detalle de la compra</button>
+                </a>
+            </div>
+        </section>
+            <% } %>
+    </main>
+</body>
+</html>
