@@ -15,42 +15,81 @@
             <a class="nav-logo" href="/">
                 <img src="/Imagenes/mercado-libre-logo.png" alt="logo de mercadolibre" width="134" height="34">
             </a>
+            <div class="link">
+                <a href="">
+                    Categorías
+                    <i class="fa-solid fa-chevron-down"></i>
+                </a>
+            </div>
+        </div>
+        <div class="contenido-nav-2">
+            <form action="">
+                <input type="text" placeholder="Buscar productos, marcas y mas...">
+                <button type="submit">
+                    <div>
+                        <i class="fa-sharp fa-solid fa-magnifying-glass"></i>
+                    </div>
+                </button>
+            </form>
+            <div class="link-2">
+                <ul>
+                    <li>Historial</li>
+                    <li>Tiendas oficiales</li>
+                    <li>Vender</li>
+                    <li>Ayuda</li>
+                </ul>
+            </div>
+        </div>
+        <div class="contenido-nav-3">
+            <div>
+                <img src="https://http2.mlstatic.com/D_NQ_789074-MLA51377199768_092022-OO.webp" title="Envío Express" alt="Envío Express" width="340" height="34">
+            </div>
+            <div class="link">
+                <ul>
+                    <li><a href=""><i class="fa-regular fa-user"></i> <%= userName %></a></li>
+                    <li><a href="/logout"><i class="fa-sharp fa-solid fa-arrow-right-from-bracket"></i> Logout</a></li>
+                    <li><a href="">Mis compras</a></li>
+                </ul>
+            </div>
         </div>
     </nav>
 
     <main>
-        <div class="cont-detalles">
-            <div>
-                <h4>NUMERO DE ORDEN: |</h4>
-                <small>
-                    <strong><%= ordenes._id %></strong>
-                </small>
+        <% for(const product of products) { %>
+        <section class="seccion-1">
+            <div class="blanco">
+                <h4>Entregado</h4>
+                <h3>Llego el 1 de noviembre</h3>
+                <p>HALLYSAS entrego tu paquete a las 18:44 hs en la calle 144 #19a-06, Usaquen, Bogota D.C</p>
             </div>
-            <div>
-                <h4>DIRECCIÓN: |</h4>
-                <small>
-                    <strong><%= ordenes.direccion %></strong>
-                </small>
+            <div class="blanco">
+                <h3>Ayuda con la compra</h3>
+                <hr>
+                <p>Recibí el producto con un problema</p>
+                <hr>
+                <p>Recibí el paquete sin el producto</p>
+                <hr>
+                <p>El pago se cobro 2 veces en mi tarjeta</p>
             </div>
-            <div>
-                <h4>DATE: |</h4>
-                <small>
-                    <strong><%= ordenes.date %></strong>
-                </small>
+        </section>
+        <section class="seccion-2">
+            <div class="tarjeta">
+                
+                <h3>Detalle de la compra</h3>
+                <p class="parrafo"># <%= ordenes._id %></p>
+                <hr>
+                <div>
+                    <p class="parrafo">Cantidad: 1</p>
+                    <p class="parrafo">precio: $ <%= product.price %></p>
+                    <p class="parrafo">Envio: Gratis</p>
+                </div>
+                <hr>
+                <div>
+                    <p class="parrafo">Total: $ <%= product.price %></p>
+                </div>
             </div>
-            <div>
-                <h4>TOTAL: |</h4>
-                <small>
-                    <strong>$ <%= ordenes.total %></strong>
-                </small>
-            </div>
-            <div>
-                <h4>METODO DE PAGO: |</h4>
-                <small>
-                    <strong><%= ordenes.metodoDePago %></strong>
-                </small>
-            </div>
-        </div>
+            <% } %>
+        </section>
     </main>
 
     <footer>
@@ -65,5 +104,7 @@
             <small >Copyright ©&nbsp;1999-2022 MercadoLibre Venezuela S.R.L. RIF: J-30684267-5.</small>
         </div>
     </footer>
+
+    <script src="https://kit.fontawesome.com/dd5e87f640.js" crossorigin="anonymous"></script>
 </body>
 </html>
