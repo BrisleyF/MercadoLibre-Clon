@@ -27,7 +27,6 @@ main .seccion-1 {
 }
 
 main .seccion-1 form {
-    padding: 1rem;
     display: flex;
     flex-direction: column;
 }
@@ -52,36 +51,16 @@ main .seccion-1 form .radio {
     margin-right: 0.5rem;
 }
 
-main .seccion-1 form .blanco {
+main .seccion-1 form .gris {
     width: 80%;
-    background-color: #fff;
-    padding: 1rem ;
-    border-radius: 5px;
+    background-color: rgb(212, 211, 211);
+    padding: 1rem;
+    margin: 0.5rem 0;
 }
-
 
 main .seccion-1 form .blanco p {
     padding: 0.5rem 1.5rem;
     color: gray;
-}
-
-hr {
-    margin: 1rem 0;
-}
-
-main .seccion-1 form a {
-    width: 80%;
-}
-
-main .seccion-1 form button {
-    
-    padding: 1rem;
-    margin: 2rem 0;
-    border: none;
-    border-radius: 5px;
-    background-color: #3483fa;
-    color: #fff;
-    font-size: 1rem;
 }
 
 main .seccion-2 {
@@ -96,6 +75,25 @@ main .seccion-2 .cont-img img {
 
 main .seccion-2 h2, .parrafo {
     padding: 1rem;
+}
+
+main .seccion-2 a {
+    text-decoration: none;
+}
+
+main .seccion-2 a button {
+    padding: 0.5rem;
+    display: block;
+    margin: 1rem auto;
+    border: none;
+    border-radius: 5px;
+    background-color: #3483fa;
+    color: #fff;
+    font-size: 1rem;
+}
+
+main .seccion-2 button a {
+    text-decoration: none;
 }
 
 footer {

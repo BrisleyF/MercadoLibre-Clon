@@ -55,10 +55,8 @@ main .seccion-1 form .radio {
 main .seccion-1 form .blanco {
     width: 80%;
     background-color: #fff;
-    padding: 1rem ;
-    border-radius: 5px;
+    padding: 1rem;
 }
-
 
 main .seccion-1 form .blanco p {
     padding: 0.5rem 1.5rem;
@@ -74,7 +72,6 @@ main .seccion-1 form a {
 }
 
 main .seccion-1 form button {
-    
     padding: 1rem;
     margin: 2rem 0;
     border: none;

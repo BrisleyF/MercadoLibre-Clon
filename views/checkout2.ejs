@@ -5,11 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout | MercadoLibre</title>
-    <link rel="stylesheet" href="/CSS/checkout.css">
-    <link href="https://http2.mlstatic.com/frontend-assets/ml-web-navigation/ui-navigation/5.19.5/mercadolibre/favicon.svg" rel="icon" data-head-react="true">
+    <link rel="stylesheet" href="/CSS/checkout2.css">
 </head>
 <body>
-
     <nav class="nav">
         <div class="contenido-nav-1">
             <a class="nav-logo" href="/">
@@ -21,28 +19,33 @@
     <main>
         <% for(const product of products) { %>
         <section class="seccion-1">
-            <h1>¿Cómo quieres recibir o retirar tu compra?</h1>
+            <h1>¿Cómo quieres pagar?</h1>
             <form action="">
-                <h3>Domicilio</h3>
-                <input class="text" type="text" placeholder="Tu dirección">
-                <h3>Recibir compra</h3>
+                <h3>Con Mercado Pago</h3>
                 <div class="blanco">
                     <input class="radio" type="radio">
-                    <label for="">Llega el jueves a tu domicilio</label>
+                    <label for="">Visa ****5675</label>
                 </div>
-                <h3>Retirar compra</h3>
                 <div class="blanco">
                     <input class="radio" type="radio">
-                    <label for="">Retira en agencia de mercado libre</label>
-                    <p>Llega el jueves</p>
-                    <hr>
+                    <label for="">Banco BBVA ****9864</label>
+                </div>
+                <div class="blanco">
                     <input class="radio" type="radio">
-                    <label for="">El domicilio del vendedor</label>
-                    <p>En medellin, Antoquia</p>
+                    <label for="">Nueva tarjeta de credito</label>
+                </div>
+                <div class="blanco">
+                    <input class="radio" type="radio">
+                    <label for="">Nueva tarjeta de débito</label>
+                </div>
+                <h3>Con otras formas de pago</h3>
+                <div class="blanco redondeado">
+                    <input class="radio" type="radio">
+                    <label for="">Transferencia desde tu banco con PSE</label>
                 </div>
                 
                 <div>
-                    <a href="/checkout2">
+                    <a href="/checkoutConfirmacion">
                         <button type="button">Continuar</button>
                     </a>
                 </div>
