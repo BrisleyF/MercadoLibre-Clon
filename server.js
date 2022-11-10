@@ -122,11 +122,6 @@ app.post('/autenticar', async (req, res) => {
 			});
 		}
 	});
-
-	
-		
-	
-
 });
 
 app.get('/productos', async (req, res) => {
@@ -189,12 +184,22 @@ app.get('/checkoutConfirmacion', async (req, res) => {
 	res.render('checkoutConfirmacion', {products});
 });
 
+app.get('/success', async (req, res) => {
+	let products = await carrito.find({}); 
+
+	res.render('success', {products});
+});
+
 app.get('/orden/:id', async (req, res) => {
 	const id = req.params.id;
 
+	userName = req.session.passport.user.nombre;
+
+	let products = await carrito.find({}); 
+
 	let ordenes = await carrito.findOne({_id: id}); 
 
-	res.render('orden', {ordenes});
+	res.render('orden', {ordenes, userName, products});
 });
 
 
