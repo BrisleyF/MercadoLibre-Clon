@@ -53,6 +53,14 @@ main div form input:focus {
 	box-shadow: 3px 0px 30px rgba(163,163,163, 0.4);
 }
 
+main div form a {
+    text-decoration: none;
+    text-align: center;
+    color: #0075FF;
+    margin: 0.5rem 0;
+}
+
+
 main div form button {
     width: 30%;
     margin: 0 auto;
