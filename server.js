@@ -1,7 +1,8 @@
 const express = require('express');
 const app = express(); 
 const session = require('express-session');
-const MongoStore = require('connect-mongo')(session);
+const passport = require('passport')
+const MongoStore = require('connect-mongo');
 const path = require('path');
 const bodyParser = require('body-parser');
 const axios = require('axios');
@@ -9,6 +10,7 @@ const initDb = require('./libs/db-connection');
 const productos = require('./model/productos');
 const carrito = require('./model/carrito');
 const user = require('./model/user');
+const verificarUser = require('./middleware/verificarUser');
 
 const MONGO_URL = 'mongodb://localhost:27017/mercadoLibre';
 
@@ -33,14 +35,31 @@ app.use(session({
 	})
 }));
 
-// Routing
-app.get('/', async (req, res) => {
-	req.session.cuenta = req.session.cuenta ? req.session.cuenta + 1 : 1;
-	console.log(`Has visto esta pagina: ${req.session.cuenta}`)
+app.use(passport.initialize());
+app.use(passport.session());
 
+passport.serializeUser((usuario, done) => done(null, { id: usuario._id, nombre: usuario.nombre }));
+passport.deserializeUser(async(usuario, done) => {
+	const userDb = await user.findById(usuario.id);
+	return done(null, { id: userDb._id, nombre: userDb.nombre })
+})
+
+app.use(function(req, res, next) {
+	//console.log(req.session.id);
+
+	//req.session.cuenta = req.session.cuenta ? req.session.cuenta + 1 : 1;
+	//console.log(`Has visto esta pagina: ${req.session.cuenta}`)
+	
+	next();
+});
+
+// Routing
+app.get('/', verificarUser ,async (req, res) => {
 	let products =  await productos.find().limit( 4 );
+
+	userName = req.session.passport.user.nombre;
     
-	res.render('home', { products });
+	res.render('home', { products, userName });
 });
 
 app.get('/registro', async (req, res) => {
@@ -52,6 +71,14 @@ app.get('/inicioDeSesion', async (req, res) => {
 
 	res.render('inicioDeSesion', {})
 });
+
+app.get('/logout', async (req,res) => {
+	req.logout(function(err) {
+		if (err) { return next(err); }
+		res.redirect('/inicioDeSesion')
+	});
+	
+})
 
 app.post('/registrar', async (req, res) => {
 	const {nombre, email, clave} = req.body;
@@ -72,7 +99,7 @@ app.post('/registrar', async (req, res) => {
 app.post('/autenticar', async (req, res) => {
 	const {email, clave} = req.body;
 
-	user.findOne({email}, (err, usuario) => {
+	let usuario = user.findOne({email}, (err, usuario) => {
 		if (err) {
 			res.status(500).send('ERROR AL AUTENTICAR EL USUARIO');
 		} else if (!usuario) {
@@ -84,28 +111,39 @@ app.post('/autenticar', async (req, res) => {
 				} else if (!usuario) {
 					res.status(500).send('LA CLAVE NO COINCIDE');
 				} else {
-					res.redirect('/');
+					req.login(usuario, function(err) {
+						if(err){
+							Error('Error al crear session');
+							console.log('Error al crear session');
+						}
+						return res.redirect('/');
+					})
 				}
 			});
-			
-			
 		}
-	} )
+	});
+
+	
+		
+	
 
 });
 
 app.get('/productos', async (req, res) => {
-
 	let products =  await productos.find({});
 
-	res.render('productos', { products });
+	userName = req.session.passport.user.nombre;
+
+	res.render('productos', { products, userName });
 });
 
 app.get('/detalleDelProducto/:id', async (req, res) => {
 	const id = req.params.id;
     let products = await productos.find({ _id: id }); 
 
-	res.render('detalleDelProducto', { products });
+	userName = req.session.passport.user.nombre;
+
+	res.render('detalleDelProducto', { products, userName });
 });
 
 app.get('/carrito/agregar/:id', async (req, res) => {
@@ -134,10 +172,21 @@ app.get('/carrito/agregar/:id', async (req, res) => {
 });
 
 app.get('/checkout', async (req, res) => {
-
 	let products = await carrito.find({}); 
 
 	res.render('checkout', {products});
+});
+
+app.get('/checkout2', async (req, res) => {
+	let products = await carrito.find({}); 
+
+	res.render('checkout2', {products});
+});
+
+app.get('/checkoutConfirmacion', async (req, res) => {
+	let products = await carrito.find({}); 
+
+	res.render('checkoutConfirmacion', {products});
 });
 
 app.get('/orden/:id', async (req, res) => {
