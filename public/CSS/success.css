@@ -27,6 +27,10 @@ main {
     padding: 2rem;
 }
 
+main .seccion-1 {
+    position: relative;
+    top: -5rem;
+}
 
 main .seccion-1 .blanco {
     background-color: #fff;
