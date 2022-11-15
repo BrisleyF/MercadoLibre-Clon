@@ -130,14 +130,16 @@
                 <p class="precio">$ <%= product.price %></p>
                 <p>Envio gratis a todo el país</p>
                 <p>Disponible</p>
-                <form id="formulario" action="">
-                    <label for="">Cantidad de productos:</label>
-                    <input id="grupo__cantidad" type="text" name="cantidad" placeholder="1 o 2">
-                    <p class="formulario__input-error">La cantidad solo puede contener numeros y el maximo son 4 dígitos.</p>
-                    <a href="/carrito/agregar/<%= product._id %>">
-                        <button id="comprar" type="button">Comprar ahora</button>
-                    </a>
-                </form>
+                <div>
+                    <form id="formulario" action="/carrito/agregar/<%= product._id %>" method="get">
+                        <label for="">Cantidad:</label>
+                        <input id="grupo__cantidad" type="text" name="cantidad" placeholder="1 o 2">
+                        <p class="formulario__input-error">La cantidad solo puede contener numeros y el maximo son 4 dígitos.</p>
+                        <a href="/carrito/agregar/<%= product._id %>" id="link">
+                            <button id="comprar" type="submit" value="comprar ahora">Comprar ahora</button>
+                        </a>
+                    </form>
+                </div>
             </div>
             <% } %>
         </section>

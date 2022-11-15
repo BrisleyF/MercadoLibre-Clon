@@ -21,10 +21,10 @@
         <h3>Llega el lunes 19 de agosto</h3>
     </div>
     <main>
-        <% for(const product of products) { %>
+        <% for(const orden of ordenDeCompra) { %>
         <section class="seccion-1">
             <div class="blanco">
-                <p>Envio a domicilio</p>
+                <p>Envio a <%= orden.paquete %></p>
                 <p class="gris">Te avisamos cuando tu compra este en caminino</p>
             </div>
             <div class="blanco">
@@ -34,12 +34,12 @@
                 <a href="">Enviar mensaje</a>
             </div>
             <div class="btn">
-                <a href="/orden/<%= product._id %>">
+                <a href="/orden/<%= orden._id %>">
                     <button type="button">Ver detalle de la compra</button>
                 </a>
             </div>
         </section>
-            <% } %>
+        <% } %>
     </main>
 </body>
 </html>

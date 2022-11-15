@@ -60,7 +60,7 @@
             <div class="blanco">
                 <h4>Entregado</h4>
                 <h3>Llego el 1 de noviembre</h3>
-                <p>HALLYSAS entrego tu paquete a las 18:44 hs en la calle 144 #19a-06, Usaquen, Bogota D.C</p>
+                <p>HALLYSAS entrego tu paquete a las 18:44 hs en <%= ordenes.direccion %></p>
             </div>
             <div class="blanco">
                 <h3>Ayuda con la compra</h3>
@@ -79,13 +79,13 @@
                 <p class="parrafo"># <%= ordenes._id %></p>
                 <hr>
                 <div>
-                    <p class="parrafo">Cantidad: 1</p>
+                    <p class="parrafo">Cantidad: <%= product.cantidad %></p>
                     <p class="parrafo">precio: $ <%= product.price %></p>
                     <p class="parrafo">Envio: Gratis</p>
                 </div>
                 <hr>
                 <div>
-                    <p class="parrafo">Total: $ <%= product.price %></p>
+                    <p class="parrafo">Total: $ <%= product.total %></p>
                 </div>
             </div>
             <% } %>

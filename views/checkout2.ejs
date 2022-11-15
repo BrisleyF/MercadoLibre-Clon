@@ -17,40 +17,42 @@
     </nav>
 
     <main>
-        <% for(const product of products) { %>
         <section class="seccion-1">
             <h1>¿Cómo quieres pagar?</h1>
-            <form action="">
+            
+            <form action="/checkoutConfirmacion/<%= ordenes._id %>" method="get">
                 <h3>Con Mercado Pago</h3>
                 <div class="blanco">
-                    <input class="radio" type="radio">
+                    <input class="checkbox" type="checkbox" name="metodoDePago" value="visa">
                     <label for="">Visa ****5675</label>
                 </div>
                 <div class="blanco">
-                    <input class="radio" type="radio">
+                    <input class="checkbox" type="checkbox" name="metodoDePago" value="Banco BBVA">
                     <label for="">Banco BBVA ****9864</label>
                 </div>
                 <div class="blanco">
-                    <input class="radio" type="radio">
+                    <input class="checkbox" type="checkbox" name="metodoDePago" value="nueva tarjeta de credito">
                     <label for="">Nueva tarjeta de credito</label>
                 </div>
                 <div class="blanco">
-                    <input class="radio" type="radio">
+                    <input class="checkbox" type="checkbox" name="metodoDePago" value="nueva tarjeta de debito">
                     <label for="">Nueva tarjeta de débito</label>
                 </div>
                 <h3>Con otras formas de pago</h3>
                 <div class="blanco redondeado">
-                    <input class="radio" type="radio">
+                    <input class="checkbox" type="checkbox" name="metodoDePago" value="transferencia">
                     <label for="">Transferencia desde tu banco con PSE</label>
                 </div>
                 
                 <div>
-                    <a href="/checkoutConfirmacion">
-                        <button type="button">Continuar</button>
+                    <a href="">
+                        <button type="submit">Continuar</button>
                     </a>
                 </div>
             </form> 
+        
         </section>
+        <% for(const product of products) { %>
         <section class="seccion-2">
             <div class="tarjeta">
                 <div class="cont-img">
@@ -60,13 +62,13 @@
                 <h2><%= product.name %></h2>
                 <hr>
                 <div>
-                    <p class="parrafo">Cantidad: 1</p>
+                    <p class="parrafo">Cantidad: <%= product.cantidad %></p>
                     <p class="parrafo">precio: $ <%= product.price %></p>
                     <p class="parrafo">Envio: Gratis</p>
                 </div>
                 <hr>
                 <div>
-                    <p class="parrafo">Total: $ <%= product.price %></p>
+                    <p class="parrafo">Total: $ <%= product.total %></p>
                 </div>
             </div>
             <% } %>
