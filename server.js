@@ -6,10 +6,12 @@ const MongoStore = require('connect-mongo');
 const path = require('path');
 const bodyParser = require('body-parser');
 const axios = require('axios');
+const queryString = require('query-string');
 const initDb = require('./libs/db-connection');
 const productos = require('./model/productos');
 const carrito = require('./model/carrito');
 const user = require('./model/user');
+const orden = require('./model/orden');
 const verificarUser = require('./middleware/verificarUser');
 
 const MONGO_URL = 'mongodb://localhost:27017/mercadoLibre';
@@ -77,7 +79,6 @@ app.get('/logout', async (req,res) => {
 		if (err) { return next(err); }
 		res.redirect('/inicioDeSesion')
 	});
-	
 })
 
 app.post('/registrar', async (req, res) => {
@@ -143,27 +144,29 @@ app.get('/detalleDelProducto/:id', async (req, res) => {
 
 app.get('/carrito/agregar/:id', async (req, res) => {
     const id = req.params.id;
-
-    let product = await productos.findOne({ _id: id }); 
+	const url = req.url;
+	cantidad = req.query.cantidad;
+	console.log(url);
+	console.log(cantidad);
 	
+    let product = await productos.findOne({ _id: id }); 
 
+	let totalPagar = cantidad * product.price;
+	console.log(totalPagar);
+	
 	// agregar al carrito
 	const productCarrito = new carrito({
 		img: product.img,
 		name: product.name,
 		price: product.price,
-		cantidad: 1,
-		total: product.price,
-		direccion: 'calle arrioja',
-		date: Date(),
-		metodoDePago: 'Efectivo'
-
+		cantidad: cantidad,
+		total: totalPagar
 	}); 
-	await carrito.remove();
-	await productCarrito.save();
 
+	await carrito.remove();
+	productCarrito.save();
+	
 	res.redirect('/checkout' );
-    
 });
 
 app.get('/checkout', async (req, res) => {
@@ -173,21 +176,57 @@ app.get('/checkout', async (req, res) => {
 });
 
 app.get('/checkout2', async (req, res) => {
+	const url = req.url;
+	direccion = req.query.direccion;
+	paquete = req.query.paquete;
+	console.log(url);
+	console.log(direccion);
+	console.log(paquete);
+
 	let products = await carrito.find({}); 
 
-	res.render('checkout2', {products});
+	const ordenes = new orden({
+		direccion: direccion,
+		paquete: paquete,
+		metodoDePago: '',
+		date: Date()
+	}); 
+	await orden.remove();
+	ordenes.save();
+	
+	res.render('checkout2', {products, ordenes});
 });
 
-app.get('/checkoutConfirmacion', async (req, res) => {
+app.get('/checkoutConfirmacion/:id', async (req, res) => {
+	const id = req.params.id;
+	const url = req.url;
+	metodo = req.query.metodoDePago;	
+	console.log(id)
+	console.log(url);
+	console.log(metodo);
+
+	
 	let products = await carrito.find({}); 
 
-	res.render('checkoutConfirmacion', {products});
+	const ordenes = await orden.updateOne(
+		{_id: id}, 
+		{
+			$set: {
+				metodoDePago: metodo
+			}
+		}); 
+
+	let ordenDeCompra = await orden.findOne({_id: id});
+
+	res.render('checkoutConfirmacion', {products, ordenDeCompra});
 });
 
-app.get('/success', async (req, res) => {
-	let products = await carrito.find({}); 
+app.get('/success/:id', async (req, res) => {
+	const id = req.params.id;
 
-	res.render('success', {products});
+	let ordenDeCompra = await orden.find({_id: id});
+
+	res.render('success', { ordenDeCompra });
 });
 
 app.get('/orden/:id', async (req, res) => {
@@ -197,7 +236,7 @@ app.get('/orden/:id', async (req, res) => {
 
 	let products = await carrito.find({}); 
 
-	let ordenes = await carrito.findOne({_id: id}); 
+	let ordenes = await orden.findOne({_id: id}); 
 
 	res.render('orden', {ordenes, userName, products});
 });

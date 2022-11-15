@@ -3,7 +3,7 @@ const inputs = document.querySelectorAll('#formulario input');
 const inputCantidad = document.getElementById('grupo__cantidad');
 
 
-const expresiones = {
+/*const expresiones = {
 	cantidad: /^\d{1,4}$/ // 1 a 4 numeros.
 };
 
@@ -52,3 +52,5 @@ formulario.addEventListener('submit', (e) => {
 	} 
 });
 
+
+document.getElementById("link").href= "" ; */
