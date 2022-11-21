@@ -1,0 +1,75 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.nav {
+    background-color: #fff159;
+    padding: 1rem;
+}
+
+nav .contenido-nav-1 a{
+    text-decoration: none;
+    color: #000;
+}
+
+
+.verde {
+    background-color: rgb(19, 168, 19);
+    height: 50vh;
+    text-align: center;
+    padding: 3rem 0;
+    color: #fff;
+}
+
+.verde h3 {
+    font-size: 2rem;
+}
+
+main {
+    background-color: rgb(197, 195, 195);
+    padding: 2rem;
+}
+
+main .blanco {
+    background-color: #fff;
+    padding: 1rem 0;
+    width: 50%;
+    height: 30vh;
+    margin: 0.5rem auto;
+    position: relative;
+    top: -7rem;
+}
+
+main .blanco p {
+    padding: 1rem;
+}
+
+main .blanco button {
+    background-color:#2f7bec;
+    border: none;
+    padding: 1rem;
+    border-radius: 6px;
+    color: #fff;
+    margin: 2rem 1rem;
+}
+
+footer {
+    padding: 1rem 0.5rem 2rem 0.5rem;
+}
+
+footer .nav-footer-navigation {
+    background-color: #fff;
+    display: flex;
+}
+
+footer .nav-footer-navigation a {
+    padding-right: 1rem;
+    text-decoration: none;
+    color: #000;
+}
+
+footer .nav-footer-navigation small {
+    color: #d1cece;
+}

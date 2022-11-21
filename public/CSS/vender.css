@@ -1,0 +1,74 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.nav {
+    background-color: #fff159;
+    padding: 1rem;
+}
+
+nav .contenido-nav-1 a{
+    text-decoration: none;
+    color: #000;
+}
+
+.amarillo {
+    background-color: #ffea78;
+    height: 45vh;
+    padding: 3rem 0 0 0;
+    text-align: center;
+}
+
+main {
+    background-color: #dedede;
+    height: 30vh;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    text-align: center;
+    padding: 0 3rem;
+}
+
+main .tarjeta {
+    background-color: #fff;
+    height: 176px;
+    width: 176px;
+    margin: -2.5rem auto 0 auto;
+    border-radius: 6px;
+}
+
+
+main .tarjeta a {
+    text-decoration: none;
+    color: rgb(83, 83, 83);
+}
+
+main .tarjeta img {
+    margin: 0.5rem;
+}
+
+main .tarjeta h3 {
+    color: rgb(83, 83, 83);
+    font-weight: lighter;
+}
+
+
+footer {
+    padding: 1rem 0.5rem 2rem 0.5rem;
+}
+
+footer .nav-footer-navigation {
+    background-color: #fff;
+    display: flex;
+}
+
+footer .nav-footer-navigation a {
+    padding-right: 1rem;
+    text-decoration: none;
+    color: #000;
+}
+
+footer .nav-footer-navigation small {
+    color: #d1cece;
+}

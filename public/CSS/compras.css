@@ -1,0 +1,175 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.nav {
+    background-color: #fff159;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    padding: 1rem;
+}
+
+nav .contenido-nav-1 a{
+    text-decoration: none;
+    color: #000;
+}
+
+nav .contenido-nav-2 {
+    grid-column: 2 / 4; 
+}
+
+nav .contenido-nav-2 input {
+    width: 90%;
+    padding: 0.5rem;
+    border: none;
+}
+
+nav .contenido-nav-2 button {
+    padding: 0.5rem;
+    border: none;
+    background-color: #fff;
+}
+
+nav .contenido-nav-2 ul {
+    display: flex;
+}
+
+nav .contenido-nav-3 ul {
+    display: flex;
+    justify-content: end;
+}
+
+nav .link {
+    padding-top: 1.5rem;
+}
+
+nav .link-2 {
+    padding-top: 2rem;
+}
+
+nav .link ul li {
+    list-style: none;
+    padding-right: 2rem;
+}
+
+nav .link-2 ul li {
+    list-style: none;
+    padding-right: 2rem;
+}
+
+nav .link-2 ul li a {
+    text-decoration: none;
+    color: #000;
+}
+
+nav .contenido-nav-3 .link a {
+    text-decoration: none;
+    color: #000;
+    display: flex;
+}
+
+nav .contenido-nav-3 .link a i {
+    padding-right: 0.5rem;
+}
+
+main {
+    background-color: rgb(197, 195, 195);
+    padding: 2rem;
+}
+
+main .titulo {
+    width: 80%;
+    margin: 0 auto;
+    padding: 1rem 0;
+}
+
+main .seccion-1 {
+    width: 80%;
+    margin: 0 auto;
+}
+
+main .seccion-1 h4 {
+    padding: 0.5rem 0;
+    color: grey;
+}
+
+main .seccion-1 .contenido .flex .datos p {
+    color: rgb(143, 143, 143);
+}
+
+main .seccion-1 .blanco {
+    width: 100%;
+    background-color: #fff;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 5px;
+}
+
+
+main .seccion-1 .blanco .contenido {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+}
+
+
+main .seccion-1 .blanco .contenido .flex {
+    display: flex;
+}
+
+main .seccion-1 .blanco .contenido .img, .datos, .btn {
+    padding: 0.5rem;
+}
+
+
+main .seccion-1 .blanco .contenido .btn {
+    grid-column: 2/3;
+}
+
+main .seccion-1 .blanco .contenido .btn button {
+    float: right;
+    background-color:#2f7bec;
+    border: none;
+    padding: 1rem;
+    border-radius: 6px;
+    color: #fff;
+}
+
+hr {
+    margin: 0.5rem 0;
+}
+
+main .seccion-1 form a {
+    width: 80%;
+}
+
+main .seccion-1 form button {
+    
+    padding: 1rem;
+    margin: 2rem 0;
+    border: none;
+    border-radius: 5px;
+    background-color: #3483fa;
+    color: #fff;
+    font-size: 1rem;
+}
+
+footer {
+    padding: 1rem 0.5rem 2rem 0.5rem;
+}
+
+footer .nav-footer-navigation {
+    background-color: #fff;
+    display: flex;
+}
+
+footer .nav-footer-navigation a {
+    padding-right: 1rem;
+    text-decoration: none;
+    color: #000;
+}
+
+footer .nav-footer-navigation small {
+    color: #d1cece;
+}

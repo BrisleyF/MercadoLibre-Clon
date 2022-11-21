@@ -1,0 +1,145 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.nav {
+    background-color: #fff159;
+    padding: 1rem;
+}
+
+nav .contenido-nav-1 a{
+    text-decoration: none;
+    color: #000;
+}
+
+.gris {
+    background-color: #f5f5f5;
+    height: 45vh;
+    padding: 3rem 0 0 0;
+}
+
+.gris .contenedor {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.gris .contenedor p {
+    color: gray;
+}
+
+.gris .contenedor .cont-2 {
+    display: flex;
+}
+
+.gris .contenedor .cont-2 h1 {
+    font-weight: 500;
+}
+
+main {
+    background-color: #dedede;
+}
+
+main .tarjeta {
+    width: 50%;
+    background-color: #fff;
+    margin: 0 auto 2rem auto;
+    position: relative;
+    top: -3.5rem;
+    border-radius: 6px;
+    padding: 2rem 2rem 4rem 2rem;
+}
+
+main .tarjeta h3 {
+    font-weight: lighter;
+    margin-bottom: 0.5rem;
+}
+
+main .tarjeta p {
+    color: grey;
+    margin-bottom: 2rem;
+}
+
+main .tarjeta form .nombre {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: 1px solid grey;
+    margin-bottom: 2rem;
+}
+
+main .tarjeta form .nombre:focus {
+    border: 2px solid #0075FF;
+    outline: none;
+}
+
+main .tarjeta form .dos {
+    height: 35vh;
+    background-color: #fff;
+    margin: 0 auto;
+    border-radius: 6px;
+    margin-top: 1rem;
+}
+
+main .tarjeta form .dos .checkbox {
+    padding: 0.5rem 0;
+}
+
+main .tarjeta form .tres h3 {
+    margin-bottom: 1rem;
+}
+
+main .tarjeta form .tres .cont-input {
+    display: flex;
+    flex-direction: column;
+}
+
+main .tarjeta form .tres .cont-input label {
+    padding: 0.5rem 0;
+}
+
+main .tarjeta form .tres .cont-input input {
+    width: 30%;
+    padding: 0.5rem;
+    border: none;
+    border-bottom: 1px solid grey;
+}
+
+main .tarjeta form .tres .cont-input input:focus {
+    outline: none;
+    border-bottom: 2px solid #0075FF;
+}
+
+main .tarjeta form .tres .cont-input .input-url {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+main .tarjeta form button {
+    background-color:#2f7bec;
+    border: none;
+    padding: 1rem;
+    border-radius: 6px;
+    color: #fff;
+    float: right;
+}
+
+footer {
+    padding: 1rem 0.5rem 2rem 0.5rem;
+}
+
+footer .nav-footer-navigation {
+    background-color: #fff;
+    display: flex;
+}
+
+footer .nav-footer-navigation a {
+    padding-right: 1rem;
+    text-decoration: none;
+    color: #000;
+}
+
+footer .nav-footer-navigation small {
+    color: #d1cece;
+}
