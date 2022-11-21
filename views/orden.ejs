@@ -35,7 +35,7 @@
                 <ul>
                     <li>Historial</li>
                     <li>Tiendas oficiales</li>
-                    <li>Vender</li>
+                    <li><a href="/vender">Vender</a></li>
                     <li>Ayuda</li>
                 </ul>
             </div>
@@ -48,7 +48,8 @@
                 <ul>
                     <li><a href=""><i class="fa-regular fa-user"></i> <%= userName %></a></li>
                     <li><a href="/logout"><i class="fa-sharp fa-solid fa-arrow-right-from-bracket"></i> Logout</a></li>
-                    <li><a href="">Mis compras</a></li>
+                    <li><a href="/compras/<%= idUsuario %>">Compras</a></li>
+                    <li><a href="/publicaciones/<%= idUsuario %>">Publicaciones</a></li>
                 </ul>
             </div>
         </div>
@@ -56,7 +57,21 @@
 
     <main>
         <% for(const product of products) { %>
+        <div class="enlaces">
+            <a href="/compras/<%= idUsuario %>">Compras</a>
+            <i class="fa-solid fa-greater-than"></i>
+            <a href="/orden/<%= ordenes._id %>">Estado de la compra</a>
+        </div>
         <section class="seccion-1">
+            <div class="cont"> 
+                <div>
+                    <h3><%= product.name %></h3>
+                    <p><%= product.cantidad %> unidades</p>
+                </div>
+                <div>
+                    <img src="<%= product.img %>" alt="" width="48" height="48">
+                </div>
+            </div>
             <div class="blanco">
                 <h4>Entregado</h4>
                 <h3>Llego el 1 de noviembre</h3>
@@ -76,7 +91,7 @@
             <div class="tarjeta">
                 
                 <h3>Detalle de la compra</h3>
-                <p class="parrafo"># <%= ordenes._id %></p>
+                <p class="parrafo"> <%= ordenes.date %> | # <%= ordenes._id %></p>
                 <hr>
                 <div>
                     <p class="parrafo">Cantidad: <%= product.cantidad %></p>

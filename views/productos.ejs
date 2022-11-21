@@ -35,7 +35,7 @@
                 <ul>
                     <li>Historial</li>
                     <li>Tiendas oficiales</li>
-                    <li>Vender</li>
+                    <li><a href="/vender">Vender</a></li>
                     <li>Ayuda</li>
                 </ul>
             </div>
@@ -48,7 +48,8 @@
                 <ul>
                     <li><a href=""><i class="fa-regular fa-user"></i> <%= userName %></a></li>
                     <li><a href="/logout"><i class="fa-sharp fa-solid fa-arrow-right-from-bracket"></i> Logout</a></li>
-                    <li><a href="">Mis compras</a></li>
+                    <li><a href="/compras/<%= idUsuario %>">Pompras</a></li>
+                    <li><a href="/publicaciones/<%= idUsuario %>">Publicaciones</a></li>
                 </ul>
             </div>
         </div>

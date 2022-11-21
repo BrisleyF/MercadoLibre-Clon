@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout | MercadoLibre</title>
+    <link href="https://http2.mlstatic.com/frontend-assets/ml-web-navigation/ui-navigation/5.19.5/mercadolibre/favicon.svg" rel="icon" data-head-react="true">
     <link rel="stylesheet" href="/CSS/checkout2.css">
 </head>
 <body>
@@ -52,26 +53,26 @@
             </form> 
         
         </section>
-        <% for(const product of products) { %>
+        
         <section class="seccion-2">
             <div class="tarjeta">
                 <div class="cont-img">
-                    <img width="224" height="224" src="<%= product.img %>"
-                        alt="<%= product.name %>">
+                    <img width="224" height="224" src="<%= products.img %>"
+                        alt="<%= products.name %>">
                 </div>
-                <h2><%= product.name %></h2>
+                <h2><%= products.name %></h2>
                 <hr>
                 <div>
-                    <p class="parrafo">Cantidad: <%= product.cantidad %></p>
-                    <p class="parrafo">precio: $ <%= product.price %></p>
+                    <p class="parrafo">Cantidad: <%= products.cantidad %></p>
+                    <p class="parrafo">precio: $ <%= products.price %></p>
                     <p class="parrafo">Envio: Gratis</p>
                 </div>
                 <hr>
                 <div>
-                    <p class="parrafo">Total: $ <%= product.total %></p>
+                    <p class="parrafo">Total: $ <%= products.total %></p>
                 </div>
             </div>
-            <% } %>
+            
         </section>
     </main>
 
