@@ -8,7 +8,12 @@ const productosSchema = new mongoose.Schema({
     marca: String,
     modelo: String,
     tamaño: String,
-    genero: String
+    genero: String,
+    condicion: String,
+    cantidad: Number,
+    tipoDePublicacion: String,
+    garantia: String,
+    idUsuario: String
 
 });
 

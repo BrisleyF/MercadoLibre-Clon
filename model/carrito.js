@@ -7,6 +7,7 @@ const carritoSchema = new mongoose.Schema({
     price: Number,
     cantidad: Number,
     total: Number,
+    idUsuario: String
 });
 
 const carrito = mongoose.model('carrito', carritoSchema); 
