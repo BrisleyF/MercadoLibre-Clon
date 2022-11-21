@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publicar</title>
+    <link href="https://http2.mlstatic.com/frontend-assets/ml-web-navigation/ui-navigation/5.19.5/mercadolibre/favicon.svg" rel="icon" data-head-react="true">
+    <link rel="stylesheet" href="/CSS/publicarPaso1.css">
+</head>
+<body>
+    <nav class="nav">
+        <div class="contenido-nav-1">
+            <a class="nav-logo" href="/">
+                <img src="/Imagenes/mercado-libre-logo.png" alt="logo de mercadolibre" width="134" height="34">
+            </a>
+        </div>
+    </nav>
+
+    <div class="gris">
+        <div class="contenedor">
+            <p>Paso 1 de 2</p>
+            <div class="cont-2">
+                <h1>Empecemos completando algunos datos</h1>
+                <img src="https://http2.mlstatic.com/frontend-assets/sell-list-core-front-end/shoe-v2.svg" alt="">
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <div class="tarjeta">
+            <h3>Indica el nombre de tu producto</h3>
+            <p>Este será el título. Ten en cuenta que cuando tengas ventas, no podrás editarlo.</p>
+            <form action="/publicarPaso2" method="get">
+                <div class="uno">
+                    <input class="nombre" type="text" name="name" placeholder="Ej: Celular Samsung Galaxy S9 64 GB negro">
+                </div>
+                
+                <div class="dos">
+                    <h3>¿Cuál es la condición de tu producto?</h3>
+                    <p>Si ha tenido algún tipo de uso, selecciona usado.</p>
+                    <div class="checkbox">
+                        <input type="checkbox" name="condicion" value="nuevo">
+                        <label for="">Nuevo</label>
+                    </div>
+                    <div class="checkbox">
+                        <input type="checkbox" name="condicion" value="usado">
+                        <label for="">Usado</label>
+                    </div>
+                    <div class="checkbox">
+                        <input type="checkbox" name="condicion" value="reacondiciondo">
+                        <label for="">Reacondicionado</label>
+                    </div>
+                </div>
+                
+                <div class="tres">
+                    <h3>Completa la información de tu producto</h3>
+                    <div class="cont-input">
+                        <label for="">Introducir URL de la imagen del producto</label>
+                        <input type="text" class="input-url" name="img">
+                    </div>
+                    <div class="cont-input">
+                        <label for="">Cantidad</label>
+                        <input type="text" name="cantidad">
+                    </div>
+                </div>
+                <div>
+                    <a href="">
+                        <button type="submit">Continuar</button>
+                    </a>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <div>
+            <nav class="nav-footer-navigation">
+                <a href="https://careers-meli.mercadolibre.com/?utm_campaign=site-mlv&amp;utm_source=mercadolibre&amp;utm_medium=mercadolibre">Trabaja con nosotros</a>
+                <a href="https://www.mercadolibre.com.ve/ayuda/terminos-de-uso-de-mercadolibre_1988">Términos y condiciones</a>
+                <a href="https://www.mercadolibre.com.ve/privacidad">Cómo cuidamos tu privacidad</a>
+                <a href="https://www.mercadolibre.com.ve/accesibilidad">Accesibilidad</a>
+                <a href="https://www.mercadolibre.com.ve/ayuda">Ayuda</a>
+            </nav>
+            <small >Copyright ©&nbsp;1999-2022 MercadoLibre Venezuela S.R.L. RIF: J-30684267-5.</small>
+        </div>
+    </footer>
+
+    <script src="https://kit.fontawesome.com/dd5e87f640.js" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publicar</title>
+    <link href="https://http2.mlstatic.com/frontend-assets/ml-web-navigation/ui-navigation/5.19.5/mercadolibre/favicon.svg" rel="icon" data-head-react="true">
+    <link rel="stylesheet" href="/CSS/publicarPaso2.css">
+</head>
+<body>
+    <nav class="nav">
+        <div class="contenido-nav-1">
+            <a class="nav-logo" href="/">
+                <img src="/Imagenes/mercado-libre-logo.png" alt="logo de mercadolibre" width="134" height="34">
+            </a>
+        </div>
+    </nav>
+
+    <div class="gris">
+        <div class="contenedor">
+            <p>Paso 2 de 2</p>
+            <div class="cont-2">
+                <h1>Para terminar, <br> definamos las condiciones de venta</h1>
+                <img src="https://http2.mlstatic.com/frontend-assets/sell-list-core-front-end/notebook-v2.svg" alt="">
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <div class="tarjeta">
+            <h3>¿Cuál es el precio?</h3>
+            <form action="/publicarConfirmacion/<%= products._id %>" method="get">
+                <div class="uno">
+                    <input class="precio" type="text" name="price" placeholder="U$S">
+                </div>
+                
+                <div class="dos">
+                    <h3>Elige el tipo de publicación</h3>
+                    <div class="radio">
+                        <input type="radio" name="tipoDePublicacion" value="gratuita">
+                        <label for="">Gratuita - 0,00 bs - Exposición baja y duración de 60 días.</label>
+                    </div>
+                    <div class="radio">
+                        <input type="radio" name="tipoDePublicacion" value="clasico">
+                        <label for="">Clásico - 35,93 bs - Duracion ilimitada.</label>
+                    </div>
+                    <div class="radio">
+                        <input type="radio" name="tipoDePublicacion" value="premium">
+                        <label for="">Premium - 43,91 bs - Exposición alta y duración ilimitada.</label>
+                    </div>
+                </div>
+                
+                <div class="tres">
+                    <h3>¿Ofreces garantía?</h3>
+                    <div class="cont-input">
+                        <input type="radio" name="garantia" value="garantia del vendedor">
+                        <label for="">Garantía del vendedor</label>
+                    </div>
+                    <div class="cont-input">
+                        <input type="radio" name="garantia" value="garantia de fabrica">
+                        <label for="">Garantía de Fábrica</label>
+                    </div>
+                    <div class="cont-input">
+                        <input type="radio" name="garantia" value="sin garantia">
+                        <label for="">Sin garantía</label>
+                    </div>
+                </div>
+                <div>
+                    <a href="">
+                        <button type="submit">Continuar</button>
+                    </a>
+                </div>
+            </form>
+        </div>
+    </main>
+
+
+    <footer>
+        <div>
+            <nav class="nav-footer-navigation">
+                <a href="https://careers-meli.mercadolibre.com/?utm_campaign=site-mlv&amp;utm_source=mercadolibre&amp;utm_medium=mercadolibre">Trabaja con nosotros</a>
+                <a href="https://www.mercadolibre.com.ve/ayuda/terminos-de-uso-de-mercadolibre_1988">Términos y condiciones</a>
+                <a href="https://www.mercadolibre.com.ve/privacidad">Cómo cuidamos tu privacidad</a>
+                <a href="https://www.mercadolibre.com.ve/accesibilidad">Accesibilidad</a>
+                <a href="https://www.mercadolibre.com.ve/ayuda">Ayuda</a>
+            </nav>
+            <small >Copyright ©&nbsp;1999-2022 MercadoLibre Venezuela S.R.L. RIF: J-30684267-5.</small>
+        </div>
+    </footer>
+
+    <script src="https://kit.fontawesome.com/dd5e87f640.js" crossorigin="anonymous"></script>
+</body>
+</html>
