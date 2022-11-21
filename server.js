@@ -56,12 +56,13 @@ app.use(function(req, res, next) {
 });
 
 // Routing
-app.get('/', verificarUser ,async (req, res) => {
+app.get('/', verificarUser, async (req, res) => {
 	let products =  await productos.find().limit( 4 );
 
 	userName = req.session.passport.user.nombre;
+	idUsuario = req.session.passport.user.id;
     
-	res.render('home', { products, userName });
+	res.render('home', { products, userName, idUsuario });
 });
 
 app.get('/registro', async (req, res) => {
@@ -129,8 +130,9 @@ app.get('/productos', async (req, res) => {
 	let products =  await productos.find({});
 
 	userName = req.session.passport.user.nombre;
+	idUsuario = req.session.passport.user.id;
 
-	res.render('productos', { products, userName });
+	res.render('productos', { products, userName, idUsuario });
 });
 
 app.get('/detalleDelProducto/:id', async (req, res) => {
@@ -138,8 +140,9 @@ app.get('/detalleDelProducto/:id', async (req, res) => {
     let products = await productos.find({ _id: id }); 
 
 	userName = req.session.passport.user.nombre;
+	idUsuario = req.session.passport.user.id;
 
-	res.render('detalleDelProducto', { products, userName });
+	res.render('detalleDelProducto', { products, userName, idUsuario });
 });
 
 app.get('/carrito/agregar/:id', async (req, res) => {
@@ -148,6 +151,8 @@ app.get('/carrito/agregar/:id', async (req, res) => {
 	cantidad = req.query.cantidad;
 	console.log(url);
 	console.log(cantidad);
+
+	idUsuario = req.session.passport.user.id;
 	
     let product = await productos.findOne({ _id: id }); 
 
@@ -160,7 +165,8 @@ app.get('/carrito/agregar/:id', async (req, res) => {
 		name: product.name,
 		price: product.price,
 		cantidad: cantidad,
-		total: totalPagar
+		total: totalPagar,
+		idUsuario: idUsuario
 	}); 
 
 	await carrito.remove();
@@ -169,13 +175,68 @@ app.get('/carrito/agregar/:id', async (req, res) => {
 	res.redirect('/checkout' );
 });
 
+app.get('/vender', async (req, res) => {
+
+	res.render('vender', {});
+});
+
+app.get('/publicarPaso1', async (req, res) => {
+
+	res.render('publicarPaso1', {});
+});
+
+app.get('/publicarPaso2', async (req, res) => {
+	const url = req.url;
+	nombre = req.query.name;
+	condicion = req.query.condicion;
+	cantidad = req.query.cantidad;
+	imagen = req.query.img;
+
+	let products = new productos({
+		name: nombre,
+		condicion: condicion,
+		img: imagen,
+		cantidad: cantidad
+	});
+
+	products.save();
+
+	res.render('publicarPaso2', {products});
+});
+
+app.get('/publicarConfirmacion/:id', async (req, res) => {
+	const id = req.params.id;
+	const url = req.url;
+	precio = req.query.price;
+	tipoDePublicacion = req.query.tipoDePublicacion;
+	garantia = req.query.garantia;
+
+	idUsuario = req.session.passport.user.id;
+
+	let producto = await productos.findOne({ _id: id }); 
+	
+	const products = await productos.updateOne(
+		{_id: id}, 
+		{
+			$set: {
+				price: precio,
+				tipoDePublicacion: tipoDePublicacion,
+				garantia: garantia,
+				idUsuario: idUsuario
+			}
+		}); 
+
+	res.render('publicarConfirmacion', {producto})
+});
+
 app.get('/checkout', async (req, res) => {
 	let products = await carrito.find({}); 
 
 	res.render('checkout', {products});
 });
 
-app.get('/checkout2', async (req, res) => {
+app.get('/checkout2/:id', async (req, res) => {
+	const id = req.params.id;
 	const url = req.url;
 	direccion = req.query.direccion;
 	paquete = req.query.paquete;
@@ -183,15 +244,20 @@ app.get('/checkout2', async (req, res) => {
 	console.log(direccion);
 	console.log(paquete);
 
-	let products = await carrito.find({}); 
+	idUsuario = req.session.passport.user.id;
+
+	let products = await carrito.findOne({_id: id}); 
 
 	const ordenes = new orden({
+		name: products.name,
+		img: products.img,
 		direccion: direccion,
 		paquete: paquete,
 		metodoDePago: '',
-		date: Date()
+		date: Date(), 
+		idUsuario: idUsuario
 	}); 
-	await orden.remove();
+	
 	ordenes.save();
 	
 	res.render('checkout2', {products, ordenes});
@@ -233,13 +299,40 @@ app.get('/orden/:id', async (req, res) => {
 	const id = req.params.id;
 
 	userName = req.session.passport.user.nombre;
+	idUsuario = req.session.passport.user.id;
 
 	let products = await carrito.find({}); 
 
 	let ordenes = await orden.findOne({_id: id}); 
 
-	res.render('orden', {ordenes, userName, products});
+
+	res.render('orden', {ordenes, userName, products, idUsuario});
 });
+
+app.get('/compras/:id', async (req, res) => {
+	const id = req.params.id;
+
+	userName = req.session.passport.user.nombre;
+	idUsuario = req.session.passport.user.id;
+
+
+	let ordenes = await orden.find({idUsuario: id}); 
+
+	res.render('compras', {ordenes, userName, idUsuario})
+});
+
+app.get('/publicaciones/:id', async (req, res) => {
+	const id = req.params.id;
+
+	userName = req.session.passport.user.nombre;
+	idUsuario = req.session.passport.user.id;
+
+	let products = await productos.find({idUsuario: id});
+
+	let ordenes = await orden.findOne({idUsuario: id}); 
+
+	res.render('publicaciones', {products, ordenes})
+})
 
 
 const PUERTO = process.env.PORT || 3000;
