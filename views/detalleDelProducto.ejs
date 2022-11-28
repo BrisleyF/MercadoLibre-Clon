@@ -23,14 +23,14 @@
             </div>
         </div>
         <div class="contenido-nav-2">
-            <form action="">
-                <input type="text" placeholder="Buscar productos, marcas y mas...">
+            <form action="/buscar" method="get">
+                <input type="text" name="buscar" id="buscar" placeholder="Buscar productos, marcas y mas..." >
                 <button type="submit">
                     <div>
                         <i class="fa-sharp fa-solid fa-magnifying-glass"></i>
                     </div>
                 </button>
-            </form>
+            </form> 
             <div class="link-2">
                 <ul>
                     <li>Historial</li>
@@ -85,6 +85,7 @@
                     </tbody>
                 </table>
             </div>
+            
             <hr>
             <div class="info-2">
                 <h2 >Descripción</h2>
@@ -111,21 +112,27 @@
                 </p>
             </div>  
             <hr>
+            
             <div class="info-3">
-                <h2>Preguntas y respuestas</h2>
-                <form action="">
-                    <input type="text" name="" id="" placeholder="Escrbe tu pregunta">
-                    <button type="submit">Preguntar</button>
+                <h2>Comentarios</h2>
+                <form action="/comentario/<%= product._id %>" method="get">
+                    <input type="text" name="comentario" id="" placeholder="Escrbe tu comentario">
+                    <button type="submit">Comentar</button>
                 </form>
+                <% } %>
                 <div>
-                    <h3>Ultimas realizadas</h3>
+                    <h3>Ultimos comentarios</h3>
+                    <% for(const msj of mensaje) { %>
                     <div>
-
+                        <p> <%= msj.userName %>: <%= msj.comentario %></p>
                     </div>
+                    <% } %>
                 </div>
             </div>  
+        
         </section>
         <section class="seccion-2">
+            <% for(const product of products) { %>
             <div class="tarjeta">
                 <h1><%= product.name %></h1>
                 <p class="precio">$ <%= product.price %></p>
