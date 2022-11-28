@@ -10,5 +10,5 @@ const ordenSchema = new mongoose.Schema({
     idUsuario: String
 });
 
-const orden = mongoose.model('orden', ordenSchema); 
-module.exports = orden;
+const Orden = mongoose.model('Orden', ordenSchema); 
+module.exports = Orden;

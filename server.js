@@ -8,10 +8,11 @@ const bodyParser = require('body-parser');
 const axios = require('axios');
 const queryString = require('query-string');
 const initDb = require('./libs/db-connection');
-const productos = require('./model/productos');
-const carrito = require('./model/carrito');
-const user = require('./model/user');
-const orden = require('./model/orden');
+const Productos = require('./model/Productos');
+const Carrito = require('./model/Carrito');
+const User = require('./model/User');
+const Orden = require('./model/Orden');
+const Comentarios = require('./model/Comentarios');
 const verificarUser = require('./middleware/verificarUser');
 
 const MONGO_URL = 'mongodb://localhost:27017/mercadoLibre';
@@ -42,7 +43,7 @@ app.use(passport.session());
 
 passport.serializeUser((usuario, done) => done(null, { id: usuario._id, nombre: usuario.nombre }));
 passport.deserializeUser(async(usuario, done) => {
-	const userDb = await user.findById(usuario.id);
+	const userDb = await User.findById(usuario.id);
 	return done(null, { id: userDb._id, nombre: userDb.nombre })
 })
 
@@ -57,12 +58,31 @@ app.use(function(req, res, next) {
 
 // Routing
 app.get('/', verificarUser, async (req, res) => {
-	let products =  await productos.find().limit( 4 );
+	let products =  await Productos.find().limit( 4 );
 
 	userName = req.session.passport.user.nombre;
 	idUsuario = req.session.passport.user.id;
+
     
-	res.render('home', { products, userName, idUsuario });
+	res.render('home', { products, userName, idUsuario});
+});
+
+app.get('/buscar', async ( req, res, next) => {
+	userName = req.session.passport.user.nombre;
+	idUsuario = req.session.passport.user.id;
+
+	if(req.query.buscar) {
+		
+		console.log(req.query.buscar);
+
+		var products = await Productos.find({ name: { $regex: '.*' + req.query.buscar + '.*', $options: 'i' } });
+
+		res.render('busqueda', { products, valor: req.query.buscar });
+
+	} else {
+		res.redirect('/')
+	}
+	
 });
 
 app.get('/registro', async (req, res) => {
@@ -86,7 +106,7 @@ app.post('/registrar', async (req, res) => {
 	const {nombre, email, clave} = req.body;
 	console.log('req.body', req.body)
 
-	const usuario = new user({nombre, email, clave});
+	const usuario = new User({nombre, email, clave});
 
 	usuario.save(err => {
 		if (err) {
@@ -101,13 +121,13 @@ app.post('/registrar', async (req, res) => {
 app.post('/autenticar', async (req, res) => {
 	const {email, clave} = req.body;
 
-	let usuario = user.findOne({email}, (err, usuario) => {
+	let usuario = User.findOne({email}, (err, usuario) => {
 		if (err) {
 			res.status(500).send('ERROR AL AUTENTICAR EL USUARIO');
 		} else if (!usuario) {
 			res.status(500).send('EL USUARIO NO EXISTE');
 		} else {
-			user.findOne({clave}, (err, usuario) => {
+			User.findOne({clave}, (err, usuario) => {
 				if (err) {
 					res.status(500).send('ERROR AL AUTENTICAR');
 				} else if (!usuario) {
@@ -127,7 +147,7 @@ app.post('/autenticar', async (req, res) => {
 });
 
 app.get('/productos', async (req, res) => {
-	let products =  await productos.find({});
+	let products =  await Productos.find({});
 
 	userName = req.session.passport.user.nombre;
 	idUsuario = req.session.passport.user.id;
@@ -137,13 +157,36 @@ app.get('/productos', async (req, res) => {
 
 app.get('/detalleDelProducto/:id', async (req, res) => {
 	const id = req.params.id;
-    let products = await productos.find({ _id: id }); 
+	const url = req.url;
+	let comentario = req.query.comentario;
 
 	userName = req.session.passport.user.nombre;
 	idUsuario = req.session.passport.user.id;
 
-	res.render('detalleDelProducto', { products, userName, idUsuario });
+	let mensaje = await Comentarios.find({ productId: id });
+
+	let products = await Productos.find({ _id: id }); 
+
+	res.render('detalleDelProducto', { products, userName, idUsuario, mensaje });
 });
+
+app.get('/comentario/:id', async (req, res) => {
+	const id = req.params.id;
+	const url = req.url;
+	let comentario = req.query.comentario;
+
+	userName = req.session.passport.user.nombre;
+
+	const comentarioDelProducto = new Comentarios({
+		comentario: comentario,
+		productId: id,
+		userName: userName
+	});
+
+	comentarioDelProducto.save();
+
+	res.redirect(`/detalleDelProducto/${id}`);
+})
 
 app.get('/carrito/agregar/:id', async (req, res) => {
     const id = req.params.id;
@@ -154,13 +197,13 @@ app.get('/carrito/agregar/:id', async (req, res) => {
 
 	idUsuario = req.session.passport.user.id;
 	
-    let product = await productos.findOne({ _id: id }); 
+    let product = await Productos.findOne({ _id: id }); 
 
 	let totalPagar = cantidad * product.price;
 	console.log(totalPagar);
 	
 	// agregar al carrito
-	const productCarrito = new carrito({
+	const productCarrito = new Carrito({
 		img: product.img,
 		name: product.name,
 		price: product.price,
@@ -169,7 +212,7 @@ app.get('/carrito/agregar/:id', async (req, res) => {
 		idUsuario: idUsuario
 	}); 
 
-	await carrito.remove();
+	await Carrito.remove();
 	productCarrito.save();
 	
 	res.redirect('/checkout' );
@@ -192,7 +235,7 @@ app.get('/publicarPaso2', async (req, res) => {
 	cantidad = req.query.cantidad;
 	imagen = req.query.img;
 
-	let products = new productos({
+	let products = new Productos({
 		name: nombre,
 		condicion: condicion,
 		img: imagen,
@@ -213,9 +256,9 @@ app.get('/publicarConfirmacion/:id', async (req, res) => {
 
 	idUsuario = req.session.passport.user.id;
 
-	let producto = await productos.findOne({ _id: id }); 
+	let producto = await Productos.findOne({ _id: id }); 
 	
-	const products = await productos.updateOne(
+	const products = await Productos.updateOne(
 		{_id: id}, 
 		{
 			$set: {
@@ -230,7 +273,7 @@ app.get('/publicarConfirmacion/:id', async (req, res) => {
 });
 
 app.get('/checkout', async (req, res) => {
-	let products = await carrito.find({}); 
+	let products = await Carrito.find({}); 
 
 	res.render('checkout', {products});
 });
@@ -246,9 +289,9 @@ app.get('/checkout2/:id', async (req, res) => {
 
 	idUsuario = req.session.passport.user.id;
 
-	let products = await carrito.findOne({_id: id}); 
+	let products = await Carrito.findOne({_id: id}); 
 
-	const ordenes = new orden({
+	const ordenes = new Orden({
 		name: products.name,
 		img: products.img,
 		direccion: direccion,
@@ -272,9 +315,9 @@ app.get('/checkoutConfirmacion/:id', async (req, res) => {
 	console.log(metodo);
 
 	
-	let products = await carrito.find({}); 
+	let products = await Carrito.find({}); 
 
-	const ordenes = await orden.updateOne(
+	const ordenes = await Orden.updateOne(
 		{_id: id}, 
 		{
 			$set: {
@@ -282,7 +325,7 @@ app.get('/checkoutConfirmacion/:id', async (req, res) => {
 			}
 		}); 
 
-	let ordenDeCompra = await orden.findOne({_id: id});
+	let ordenDeCompra = await Orden.findOne({_id: id});
 
 	res.render('checkoutConfirmacion', {products, ordenDeCompra});
 });
@@ -290,7 +333,7 @@ app.get('/checkoutConfirmacion/:id', async (req, res) => {
 app.get('/success/:id', async (req, res) => {
 	const id = req.params.id;
 
-	let ordenDeCompra = await orden.find({_id: id});
+	let ordenDeCompra = await Orden.find({_id: id});
 
 	res.render('success', { ordenDeCompra });
 });
@@ -301,9 +344,9 @@ app.get('/orden/:id', async (req, res) => {
 	userName = req.session.passport.user.nombre;
 	idUsuario = req.session.passport.user.id;
 
-	let products = await carrito.find({}); 
+	let products = await Carrito.find({}); 
 
-	let ordenes = await orden.findOne({_id: id}); 
+	let ordenes = await Orden.findOne({_id: id}); 
 
 
 	res.render('orden', {ordenes, userName, products, idUsuario});
@@ -316,7 +359,7 @@ app.get('/compras/:id', async (req, res) => {
 	idUsuario = req.session.passport.user.id;
 
 
-	let ordenes = await orden.find({idUsuario: id}); 
+	let ordenes = await Orden.find({idUsuario: id}); 
 
 	res.render('compras', {ordenes, userName, idUsuario})
 });
@@ -327,9 +370,9 @@ app.get('/publicaciones/:id', async (req, res) => {
 	userName = req.session.passport.user.nombre;
 	idUsuario = req.session.passport.user.id;
 
-	let products = await productos.find({idUsuario: id});
+	let products = await Productos.find({idUsuario: id});
 
-	let ordenes = await orden.findOne({idUsuario: id}); 
+	let ordenes = await Orden.findOne({idUsuario: id}); 
 
 	res.render('publicaciones', {products, ordenes})
 })
