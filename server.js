@@ -6,8 +6,11 @@ const passport = require('passport')
 const MongoStore = require('connect-mongo');
 const path = require('path');
 const bodyParser = require('body-parser');
+const swaggerUI = require('swagger-ui-express');
 const initDb = require('./libs/db-connection');
 const User = require('./model/User');
+const openApiConfigration = require('./docs/swagger');
+
 
 
 const MONGO_URL = 'mongodb://localhost:27017/mercadoLibre';
@@ -50,6 +53,11 @@ app.use(function(req, res, next) {
 	
 	next();
 });
+
+// definir ruta de documentacion
+app.use('/documentacion',
+	swaggerUI.serve,
+	swaggerUI.setup(openApiConfigration));
 
 // Rutas de la App
 app.use('/', routes());
