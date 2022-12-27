@@ -9,7 +9,16 @@ exports.mostrarProductos = async (req, res) => {
     let products =  await Productos.find({});
 
 	res.render('productos', { products, userName, idUsuario });
+	
 };
+
+exports.apiMostrarProductos = async (req, res) => {
+
+    let products =  await Productos.find({});
+
+	res.json(products);
+};
+
 
 exports.mostrarProducto = async (req, res) => {
     const id = req.params.id;
