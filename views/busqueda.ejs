@@ -62,6 +62,10 @@
         </section>
         <section class="seccion-productos">
             <section class="seccion-tarjetas">
+                <% if(products.length == 0) { %>
+                    <h1>No hay productos que coincidan con la busqueda</h1>
+                <% } %>  
+
                 <% for(const product of products) { %>
                 <div class="tarjeta">
                     <a href="/detalleDelProducto/<%= product._id %>">
